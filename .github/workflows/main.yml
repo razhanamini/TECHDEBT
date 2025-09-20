@@ -1,4 +1,4 @@
-name: Pattern Scan
+name: pattern-scan
 
 on:
   workflow_dispatch:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Pattern Scanner
+      - name: pattern-scan
         uses: ./  # points to the root of your repo, or your published action repo
         with:
           patterns: ${{ github.event.inputs.patterns }}
