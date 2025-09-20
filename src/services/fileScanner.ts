@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { PatternMatch } from '../types/models';
+import type { PatternMatch } from '../types/models.js';
 
 /**
  * Scan multiple files for the given patterns and return all matches.

@@ -1,7 +1,7 @@
 {
   "name": "debt",
   "version": "1.0.0",
-  "description": "",
+  "description": "A GitHub Action that scans your codebase for custom markers like `TODO`, `FIXME`, `HACK`, or any other keywords you define, and optionally creates issues or pull request comments for them.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.1",
@@ -20,5 +20,13 @@
     "@types/node": "^24.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razhanamini/TECHDEBT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/razhanamini/TECHDEBT/issues"
+  },
+  "homepage": "https://github.com/razhanamini/TECHDEBT#readme"
 }
