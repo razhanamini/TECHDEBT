@@ -1,0 +1,31 @@
+# Example workflow for using the Debt Scanner Action
+# Copy this to your repository as .github/workflows/debt-scanner.yml
+
+name: Debt Scanner
+
+on:
+  workflow_dispatch:
+    inputs:
+      patterns:
+        description: 'Comma-separated patterns to search for (e.g., TODO,FIXME,HACK)'
+        required: true
+        default: 'TODO,FIXME,HACK'
+      create_issues:
+        description: 'Create GitHub issues for found patterns'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  scan-debt:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run debt scanner
+      uses: razhanamini/TECHDEBT@main
+      with:
+        patterns: ${{ github.event.inputs.patterns }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -10,10 +10,16 @@ export async function getAllFilePaths(dir = process.cwd(), fileList: string[] = 
     const stat = await fs.promises.stat(filePath);
 
     if (stat.isDirectory()) {
-      // Skip node_modules and .git
-      if (file === 'node_modules' || file === '.git') continue;
+      // Skip common directories that shouldn't be scanned
+      const skipDirs = ['node_modules', '.git', 'dist', 'build', 'coverage', '.next', '.nuxt', 'target'];
+      if (skipDirs.includes(file)) continue;
       await getAllFilePaths(filePath, fileList);
     } else {
+      // Skip binary files and common non-source files
+      const skipExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.ico', '.woff', '.woff2', '.ttf', '.eot', '.pdf', '.zip', '.tar', '.gz'];
+      const ext = path.extname(file).toLowerCase();
+      if (skipExtensions.includes(ext)) continue;
+      
       fileList.push(filePath);
     }
   }

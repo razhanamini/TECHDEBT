@@ -1,11 +1,11 @@
 name: "Pattern Scanner"
 description: "Scan a repository for TODO, FIXME, HACK, or custom patterns and report matches."
-author: "Your Name"
+author: "razhanamini"
 
 inputs:
   patterns:
     description: "Comma-separated list of patterns to search for"
-    required: true
+    required: false
     default: "TODO,FIXME,HACK"
   github-token:
     description: "GitHub token for creating issues"

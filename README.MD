@@ -6,7 +6,44 @@ A GitHub Action that scans your codebase for custom markers like `TODO`, `FIXME`
 
 ## Usage
 
-Create a workflow in `.github/workflows/debt-scanner.yml`:
+### Quick Start
+
+Copy the example workflow from `example-workflow.yml` to your repository as `.github/workflows/debt-scanner.yml`, or create your own workflow:
+
+```yaml
+name: Debt Scanner
+
+on:
+  workflow_dispatch:
+    inputs:
+      patterns:
+        description: 'Comma-separated patterns to search for (e.g., TODO,FIXME,HACK)'
+        required: true
+        default: 'TODO,FIXME,HACK'
+      create_issues:
+        description: 'Create GitHub issues for found patterns'
+        required: false
+        default: true
+        type: boolean
+
+jobs:
+  scan-debt:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run debt scanner
+      uses: razhanamini/TECHDEBT@main
+      with:
+        patterns: ${{ github.event.inputs.patterns }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+### Automatic Runs
+
+You can also set it to run automatically on pushes and PRs:
 
 ```yaml
 name: Debt Scanner
@@ -17,6 +54,11 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      patterns:
+        description: 'Comma-separated patterns to search for'
+        required: true
+        default: 'TODO,FIXME,HACK'
 
 jobs:
   scan-debt:
@@ -26,22 +68,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: Install dependencies
-      run: npm ci
-      
-    - name: Build project
-      run: npm run build
-      
     - name: Run debt scanner
-      uses: ./
+      uses: razhanamini/TECHDEBT@main
       with:
-        patterns: "TODO,FIXME,HACK,BUG"
+        patterns: ${{ github.event.inputs.patterns || 'TODO,FIXME,HACK' }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
