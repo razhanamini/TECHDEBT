@@ -1,8 +1,8 @@
 import * as core from '@actions/core';
-import { getConfigPatterns } from './services/configLoader.js';
-import { getAllFilePaths } from './utils/fileUtils.js';
-import { scanForPatterns } from './services/fileScanner.js';
-import { createIssueForPatterns } from './services/githubClient.js';
+import { getConfigPatterns } from './services/configLoader';
+import { getAllFilePaths } from './utils/fileUtils';
+import { scanForPatterns } from './services/fileScanner';
+import { createIssueForPatterns } from './services/githubClient';
 
 
 async function run() {

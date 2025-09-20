@@ -52,3 +52,4 @@ async function createIssueForPatterns(matches) {
     core.info(`Created issue #${issue.number}`);
     return issue;
 }
+//# sourceMappingURL=githubClient.js.map

@@ -34,27 +34,27 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
-const configLoader_js_1 = require("./services/configLoader.js");
-const fileUtils_js_1 = require("./utils/fileUtils.js");
-const fileScanner_js_1 = require("./services/fileScanner.js");
-const githubClient_js_1 = require("./services/githubClient.js");
+const configLoader_1 = require("./services/configLoader");
+const fileUtils_1 = require("./utils/fileUtils");
+const fileScanner_1 = require("./services/fileScanner");
+const githubClient_1 = require("./services/githubClient");
 async function run() {
     try {
         // 1. Load the user-defined patterns
-        const patterns = (0, configLoader_js_1.getConfigPatterns)();
+        const patterns = (0, configLoader_1.getConfigPatterns)();
         core.info(`Patterns to scan: ${patterns.join(', ')}`);
         // 2. Get all file paths in the repository
-        const filePaths = await (0, fileUtils_js_1.getAllFilePaths)();
+        const filePaths = await (0, fileUtils_1.getAllFilePaths)();
         core.info(`Scanning ${filePaths.length} files...`);
         // 3. Scan files for matches
-        const matches = (0, fileScanner_js_1.scanForPatterns)(patterns, filePaths);
+        const matches = (0, fileScanner_1.scanForPatterns)(patterns, filePaths);
         core.info(`Found ${matches.length} matches.`);
         // 4. If matches found, create a GitHub issue
         if (matches.length > 0) {
             const issueBody = matches
                 .map(m => `File: ${m.filePath}, Line: ${m.line}, Match: ${m.pattern}`)
                 .join('\n');
-            const issue = await (0, githubClient_js_1.createIssueForPatterns)(matches);
+            const issue = await (0, githubClient_1.createIssueForPatterns)(matches);
             core.info(`Created issue #${issue?.number} at ${issue?.html_url}`);
         }
         else {
@@ -68,3 +68,4 @@ async function run() {
 }
 // Run the main function
 run();
+//# sourceMappingURL=index.js.map

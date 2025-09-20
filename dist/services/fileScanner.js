@@ -71,3 +71,4 @@ function scanForPatterns(patterns, filePaths) {
     });
     return results;
 }
+//# sourceMappingURL=fileScanner.js.map
