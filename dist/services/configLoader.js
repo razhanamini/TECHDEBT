@@ -39,8 +39,8 @@ function getConfigPatterns() {
     try {
         const rawPatterns = core.getInput('patterns');
         if (!rawPatterns) {
-            core.warning('No patterns provided, defaulting to TODO');
-            return ['TODO']; // fallback default
+            // Use the default patterns from action.yml
+            return ['TODO', 'FIXME', 'HACK'];
         }
         const patterns = rawPatterns.split(',').map(p => p.trim());
         console.log('Patterns to scan:', patterns);
