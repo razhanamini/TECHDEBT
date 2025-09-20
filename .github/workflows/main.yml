@@ -1,4 +1,4 @@
-name: Pattern Scan
+name: pattern-scan
 
 on:
   workflow_dispatch:
