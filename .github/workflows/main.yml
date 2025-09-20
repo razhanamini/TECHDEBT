@@ -1,0 +1,25 @@
+name: Pattern Scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      patterns:
+        description: "Comma-separated patterns to scan for"
+        required: false
+        default: "TODO,FIXME,HACK"
+  push:
+    branches:
+      - main
+      - beta
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Pattern Scanner
+        uses: ./  # points to the root of your repo, or your published action repo
+        with:
+          patterns: ${{ github.event.inputs.patterns }}
