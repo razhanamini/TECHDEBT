@@ -57,3 +57,4 @@ function getConfigPatterns() {
         return []; // return empty array to satisfy type
     }
 }
+//# sourceMappingURL=configLoader.js.map

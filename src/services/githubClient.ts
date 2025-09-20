@@ -1,6 +1,6 @@
 import * as github from '@actions/github';
 import * as core from '@actions/core';
-import type { PatternMatch } from '../types/models.js';
+import type { PatternMatch } from '../types/models';
 
 export async function createIssueForPatterns(matches: PatternMatch[]) {
   if (matches.length === 0) {

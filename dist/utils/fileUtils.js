@@ -53,3 +53,4 @@ async function getAllFilePaths(dir = process.cwd(), fileList = []) {
     }
     return fileList;
 }
+//# sourceMappingURL=fileUtils.js.map
